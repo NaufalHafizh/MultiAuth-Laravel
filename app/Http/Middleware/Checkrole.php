@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Checkrole
 {
@@ -17,10 +18,11 @@ class Checkrole
     public function handle(Request $request, Closure $next)
     {
 
-        if (auth()->user()->role == 1 && auth()->user()->role == 2) {
+        if (Auth::check() && Auth::User()->role == 1 || Auth::check() && Auth::User()->role == 2) {
+
             return $next($request);
         }
 
-        return redirect('Auth/index')->with('error', "Tidak Punya Akses");
+        return redirect('/home')->with('failed', "Anda Tidak Punya Akses");
     }
 }

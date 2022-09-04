@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Auth;
+use App\Http\Controllers\Home;
+use App\Http\Controllers\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [Auth::class, 'index']);
+Route::get('/', [Login::class, 'index'])->name('login');
+Route::post('/login', [Login::class, 'authenticate']);
+Route::post('/logout', [Login::class, 'logout']);
+
+Route::resource('/home', Home::class);
