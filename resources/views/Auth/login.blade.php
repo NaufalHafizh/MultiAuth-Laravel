@@ -18,15 +18,15 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label fw-bold">Email</label>
                         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                            id="email">
+                            id="email" value="{{ old('email') }}">
                         @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label fw-bold">Password</label>
-                        <input type="text" class="form-control @error('password') is-invalid @enderror" name="password"
-                            id="password">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+                            id="password" value="{{ old('email') }}">
                         @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
