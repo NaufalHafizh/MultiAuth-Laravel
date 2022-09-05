@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class Home extends Controller
 {
@@ -12,7 +14,7 @@ class Home extends Controller
     {
         $this->middleware('auth');
 
-        $this->middleware('admin')->except('index');
+        $this->middleware('admin')->except(['index', 'show']);
     }
     /**
      * Display a listing of the resource.
@@ -39,7 +41,7 @@ class Home extends Controller
     {
         $data = [
 
-            'title' => "home",
+            'title' => "Create | Home",
         ];
 
         return view('Home.create', $data);
@@ -53,7 +55,16 @@ class Home extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+
+            'nama_project' => 'required|min:5',
+            'keterangan' => 'required|min:5'
+        ]);
+
+        $validate['status'] = 1;
+        Project::create($validate);
+
+        return redirect('/home')->with('finish', "data berhasil di tambahkan");
     }
 
     /**
@@ -62,9 +73,15 @@ class Home extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Project $home)
     {
-        //
+        $data = [
+
+            'title' => 'Detail | Home',
+            'show' => $home
+        ];
+
+        return view('Home.detail', $data);
     }
 
     /**
@@ -73,9 +90,15 @@ class Home extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit(Project $home)
     {
-        //
+        $data = [
+
+            'title' => "Edit | Home",
+            'edit' => $home
+        ];
+
+        return view('Home.edit', $data);
     }
 
     /**
@@ -85,9 +108,17 @@ class Home extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Project $home)
     {
-        //
+        $validate = $request->validate([
+
+            'nama_project' => 'required|min:5',
+            'keterangan' => 'required|min:5',
+            'status' => 'required'
+        ]);
+
+        Project::where('id', $home->id)->update($validate);
+        return redirect('/home')->with('finish', "data berhasil di edit");
     }
 
     /**
@@ -96,8 +127,9 @@ class Home extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy(Project $home)
     {
-        //
+        Project::destroy($home->id);
+        return redirect('/home')->with('finish', "data berhasil di hapus");
     }
 }
