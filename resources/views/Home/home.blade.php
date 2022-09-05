@@ -2,7 +2,20 @@
 @section('content')
     <div class="fs-6 bg-light bg-opacity-100 p-5 rounded-3" style="margin-top: 100px">
         <div class="mb-4">
-            <h2>Selamat Datang, {{ auth()->user()->name }}</h2>
+            <div class="row">
+                <div class="col-10">
+                    <h2>Selamat Datang, {{ auth()->user()->name }}</h2>
+                </div>
+                <div class="col justify-content-center d-flex">
+                    @if (auth()->user()->role == 1)
+                        <h4 class="text-success">Gardener</h4>
+                    @elseif(auth()->user()->role == 2)
+                        <h4 class="text-success">Designer</h4>
+                    @else
+                        <h4 class="text-success">User</h4>
+                    @endif
+                </div>
+            </div>
             <hr>
         </div>
         @if (Auth::User()->role == 1 || Auth::User()->role == 2)
