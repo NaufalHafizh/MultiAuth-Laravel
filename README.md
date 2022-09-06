@@ -17,21 +17,21 @@ untuk menggunakan project ini ikuti langkah di bawah:
     git clone https://github.com/NaufalHafizh/MultiAuth-Laravel.git
     ```
 
-- Buat database baru
-- Setting .env
-- Migrasi
+2. Buat database baru
+3. Setting .env
+4. Migrasi
 
     ```bash
     php artisan migrate:fresh
     ```
 
-- Seeding
+5. Seeding
 
     ```bash
     php artisan db:seed
     ```
 
-- Development Server
+6. Development Server
 
     ```bash
     php artisan serve
