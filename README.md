@@ -11,7 +11,7 @@ Database dapat di download pada [multiauth-laravel.sql](https://github.com/Naufa
 
 untuk menggunakan project ini ikuti langkah di bawah:
 
-1. Clone respository
+1. Clone repository
 
     ```bash
     git clone https://github.com/NaufalHafizh/MultiAuth-Laravel.git
