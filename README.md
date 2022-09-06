@@ -9,17 +9,17 @@ Database dapat di download pada [multiauth-laravel.sql](https://github.com/Naufa
 
 ## Login accounts
 
-**Gardener**
-Immanuel@gardener.com
-password
+**Gardener** <br>
+Immanuel@gardener.com <br>
+password <br>
 
-**Designer**
-Murphy@designer.com
-password
+**Designer** <br>
+Murphy@designer.com <br>
+password <br>
 
-**User**
-Kelvin@user.com
-password
+**User** <br>
+Kelvin@user.com <br>
+password <br>
 
 ## License
 
